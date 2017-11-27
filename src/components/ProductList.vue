@@ -5,10 +5,10 @@
             v-for="item in productList"
             :key="item.id"
             :item-data="item"
-            v-on:increment="addProduct"
-            v-on:decrement="delProduct"
+            v-on:increment="addProduct(item.id)"
+            v-on:decrement="delProduct(item.id)"
         ></product-item>
-    </div>
+     </div>
 </template>
 
 <script>
@@ -22,11 +22,18 @@
         OrderBasket
       },
       methods: {
-        addProduct: function () {
-          this.dataCounter += 1
+        addProduct: function (id) {
+          this.dataCounter.push(id)
+          console.log('added' + id)
         },
-        delProduct: function () {
-          this.dataCounter -= 1
+        delProduct: function (id) {
+          this.dataCounter.pop(id)
+          console.log('deleted' + id)
+        }
+      },
+      computed: {
+        addedItemsAmount: function () {
+          return this.dataCounter.length
         }
       },
       data () {
@@ -35,23 +42,23 @@
             {
               id: 1,
               title: 'Gretel A7',
-              pic: 'pics/Gretel A7.jpg',
+              pic: '../assets/Gretel-A7.jpg',
               link: 'https://market.yandex.ru/product/1725613811?show-uid=111646259028863319816001&nid=54726&context=search'
             },
             {
               id: 2,
               title: 'Jinga Simple F315',
-              pic: 'pics/Jinga Simple F315.jpg',
+              pic: '../assets/Jinga-Simple-F315.jpg',
               link: 'https://market.yandex.ru/product/13623394?show-uid=111646259028863319816002&nid=54726&context=search'
             },
             {
               id: 3,
               title: 'Philips S386',
-              pic: 'pics/Philips S386.jpg',
+              pic: '../assets/Philips-S386.jpg',
               link: 'https://market.yandex.ru/product/1729159126?show-uid=111646259028863319816003&nid=54726&context=search'
             }
           ],
-          dataCounter: 0
+          dataCounter: []
         }
       }
     }

@@ -7,7 +7,8 @@
         <a :href="itemData.link">
             {{ itemData.link }}
         </a>
-        <button v-on:click="countCounter">Add me</button>
+        <button v-on:click="incCounter">Add me</button>
+        <button v-on:click="decCounter">Delete me</button>
     </li>
 </template>
 
@@ -20,11 +21,15 @@
         }
       },
       methods: {
-        countCounter: function () {
+        incCounter: function () {
+          if (!this.addedToBasket) {
+            this.$emit('increment')
+          }
+          this.addedToBasket = !this.addedToBasket
+        },
+        decCounter: function () {
           if (this.addedToBasket) {
             this.$emit('decrement')
-          } else {
-            this.$emit('increment')
           }
           this.addedToBasket = !this.addedToBasket
         }

@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-  props: [ 'counter' ]
-}
+    export default {
+      props: [ 'counter' ]
+    }
 </script>
 
 <style>
