@@ -1,6 +1,6 @@
 <template>
     <div>
-        <order-basket :counter="dataCounter"></order-basket>
+        <order-basket :basket="getBasket"></order-basket>
         <product-item
             v-for="item in productList"
             :key="item.id"
@@ -8,7 +8,7 @@
             v-on:increment="addProduct(item.id)"
             v-on:decrement="delProduct(item.id)"
         ></product-item>
-     </div>
+    </div>
 </template>
 
 <script>
@@ -23,17 +23,24 @@
       },
       methods: {
         addProduct: function (id) {
-          this.dataCounter.push(id)
-          console.log('added' + id)
+          if (this.basket.hasOwnProperty(id)) {
+            this.basket[id] += 1
+          } else {
+            this.basket[id] = 1
+          }
+          // console.log(this.basket)
         },
         delProduct: function (id) {
-          this.dataCounter.pop(id)
-          console.log('deleted' + id)
+          if (this.basket.hasOwnProperty(id) && this.basket[id] > 0) {
+            this.basket[id] -= 1
+          }
+          // console.log(this.basket)
         }
       },
       computed: {
-        addedItemsAmount: function () {
-          return this.dataCounter.length
+        getBasket: function () {
+          console.log(this.basket)
+          return this.basket
         }
       },
       data () {
@@ -58,7 +65,8 @@
               link: 'https://market.yandex.ru/product/1729159126?show-uid=111646259028863319816003&nid=54726&context=search'
             }
           ],
-          dataCounter: []
+          dataCounter: [],
+          basket: {}
         }
       }
     }

@@ -22,16 +22,10 @@
       },
       methods: {
         incCounter: function () {
-          if (!this.addedToBasket) {
-            this.$emit('increment')
-          }
-          this.addedToBasket = !this.addedToBasket
+          this.$emit('increment')
         },
         decCounter: function () {
-          if (this.addedToBasket) {
-            this.$emit('decrement')
-          }
-          this.addedToBasket = !this.addedToBasket
+          this.$emit('decrement')
         }
       }
     }

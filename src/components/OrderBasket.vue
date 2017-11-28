@@ -1,12 +1,12 @@
 <template>
     <button>
-        {{ counter }}
+        {{ basket }}
     </button>
 </template>
 
 <script>
     export default {
-      props: [ 'counter' ]
+      props: [ 'basket' ]
     }
 </script>
 
