@@ -1,6 +1,6 @@
 <template>
     <li class="list-item">
-        {{ itemData.title }}
+        {{ itemData.name }}
         <div>
             <img :src="itemData.pic" class="picture">
         </div>
